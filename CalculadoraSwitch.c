@@ -34,38 +34,42 @@ void main(void)
    int FlagMult;
    
    set_tris_a(0xC0);
-   set_tris_b(0x80);
-   set_tris_c(0xFF);
-   set_tris_d(0xFF);
-   set_tris_e(0x07);
+   set_tris_b(0x00);
+   
+   set_tris_c(0x00);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   
+   setup_oscillator(OSC_16MHZ);
    //Aqui iniciaizamos todo
    while(1)
    {
       Valor1=input_c();
       Valor2=input_d();
+      Opcion=input_e();
       
-      if((Opcion&0x80)==0x80){
+      if((Opcion&0x01)==0x01){
          FlagSuma=1;
       }
       else{
          FlagSuma=0;
       }
       
-      if((Opcion&0x04)==0x04){
+      if((Opcion&0x02)==0x02){
          FlagResta=1;
       }
       else{
          FlagResta=0;
       }
       
-      if((Opcion&0x02)==0x02){
+      if((Opcion&0x04)==0x04){
          FlagMult=1;
       }
       else{
          FlagMult=0;
       }
       
-      if((Opcion&0x01)==0x01){
+      if((Opcion&0x08)==0x08){
          FlagDiv=1;
       }
       else{
@@ -87,8 +91,7 @@ void main(void)
       if(FlagDiv==1){
          Result=Valor1/Valor2;
       }
-      
-      
+
       output_a(Result);
       output_b(Result>>6);
    }
