@@ -36,9 +36,9 @@ void main(void)
    set_tris_a(0xC0);
    set_tris_b(0x00);
    
-   set_tris_c(0x00);
-   set_tris_d(0x00);
-   set_tris_e(0x00);
+   set_tris_c(0xff);
+   set_tris_d(0xff);
+   set_tris_e(0xff);
    
    setup_oscillator(OSC_16MHZ);
    //Aqui iniciaizamos todo
