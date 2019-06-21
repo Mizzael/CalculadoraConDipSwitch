@@ -26,7 +26,12 @@ void main(void)
    int Valor1;
    int Valor2;
    int Result;
-   int Operacion;
+   int Opcion;
+   
+   int FlagSuma;
+   int FlagResta;
+   int FlagDiv;
+   int FlagMult;
    
    set_tris_a(0xC0);
    set_tris_b(0x80);
@@ -39,11 +44,53 @@ void main(void)
       Valor1=input_c();
       Valor2=input_d();
       
-      if((Operacion&0x80)==0x80){
-         Result=Valor1+Valor2;
-         Operacion=0x00;
+      if((Opcion&0x80)==0x80){
+         FlagSuma=1;
       }
+      else{
+         FlagSuma=0;
+      }
+      
+      if((Opcion&0x04)==0x04){
+         FlagResta=1;
+      }
+      else{
+         FlagResta=0;
+      }
+      
+      if((Opcion&0x02)==0x02){
+         FlagMult=1;
+      }
+      else{
+         FlagMult=0;
+      }
+      
+      if((Opcion&0x01)==0x01){
+         FlagDiv=1;
+      }
+      else{
+         FlagDiv=0;
+      }
+      
+      if(FlagSuma==1){
+         Result=Valor1+Valor2;
+      }
+      
+      if(FlagResta==1){
+         Result=Valor1-Valor2;
+      }
+      
+      if(FlagMult==1){
+         Result=Valor1*Valor2;
+      }
+      
+      if(FlagDiv==1){
+         Result=Valor1/Valor2;
+      }
+      
+      
       output_a(Result);
+      output_b(Result>>6);
    }
 }
 
